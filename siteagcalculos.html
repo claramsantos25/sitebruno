@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculos Trabalhistas: Precisão Jurídica e Conversão | Bruno Alves</title>
+    <meta name="description" content="Evite prejuízos na liquidação de sentença. Bruno Alves Guimarães é advogado especialista em Cálculos Trabalhistas e Judiciais. Atuação nacional. Orçamento via WhatsApp.">
+    
+    <!-- Tailwind CSS (Framework de Estilo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes (Google Fonts: Montserrat para Títulos, Roboto para Texto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-black': '#0a0a0a',
+                        'brand-gray': '#262626',
+                        'brand-silver': '#F3F4F6',
+                        'brand-silver-dark': '#9CA3AF',
+                    },
+                    fontFamily: {
+                        'heading': ['Montserrat', 'sans-serif'],
+                        'body': ['Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Configurações Globais */
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Efeitos de Elegância */
+        .text-silver-gradient {
+            background: linear-gradient(to right, #9CA3AF, #E5E7EB, #9CA3AF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .bg-whatsapp { background-color: #25D366; }
+        
+        /* Animação do Botão WhatsApp */
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-float {
+            animation: pulse-green 3s infinite;
+        }
+
+        /* Utilitários de Navegação (SPA) */
+        .page-section {
+            display: none; 
+            animation: fadeIn 0.8s ease-out;
+        }
+        .page-section.active {
+            display: block; 
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Background Overlay - Noir Style */
+        .hero-bg {
+            background-color: #000;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 100%), url('./fundohead.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Bordas Elegantes */
+        .elegant-border {
+            border: 1px solid #FFFFF;
+            transition: all 0.3s ease;
+        }
+        .elegant-border:hover {
+            border-color: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.0);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 flex flex-col min-h-screen font-light">
+
+    <!-- HEADER / NAVEGAÇÃO -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" onclick="navigateTo('home')" class="text-xl font-heading tracking-[0.2em] text-black uppercase hover:opacity-70 transition">
+                Bruno Alves <span class="font-bold">Guimarães</span>
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden md:flex space-x-10 items-center text-xs font-medium uppercase tracking-widest text-gray-500">
+                <a href="#" onclick="navigateTo('home')" class="hover:text-black transition nav-link text-black">Home</a>
+                <a href="#" onclick="navigateTo('sobre')" class="hover:text-black transition nav-link">Sobre</a>
+                <a href="#" onclick="navigateTo('servicos')" class="hover:text-black transition nav-link">Serviços</a>
+                <a href="#" onclick="navigateTo('experiencia')" class="hover:text-black transition nav-link">Experiência</a>
+                <a href="#" onclick="navigateTo('blog')" class="hover:text-black transition nav-link">Blog</a>
+                <a href="#" onclick="navigateTo('contato')" class="px-6 py-3 bg-black text-white rounded-none hover:bg-gray-800 transition shadow-lg tracking-wider">
+                    Falar no WhatsApp
+                </a>
+            </nav>
+
+            <!-- Menu Mobile Button -->
+            <button class="md:hidden text-2xl text-black focus:outline-none" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+            <div class="flex flex-col p-6 space-y-4 font-medium text-center text-sm uppercase tracking-widest">
+                <a href="#" onclick="navigateTo('home'); toggleMobileMenu()" class="block py-2 hover:text-black">Home</a>
+                <a href="#" onclick="navigateTo('sobre'); toggleMobileMenu()" class="block py-2 hover:text-black">Sobre</a>
+                <a href="#" onclick="navigateTo('servicos'); toggleMobileMenu()" class="block py-2 hover:text-black">Serviços</a>
+                <a href="#" onclick="navigateTo('experiencia'); toggleMobileMenu()" class="block py-2 hover:text-black">Experiência</a>
+                <a href="#" onclick="navigateTo('blog'); toggleMobileMenu()" class="block py-2 hover:text-black">Blog</a>
+                <a href="#" onclick="navigateTo('contato'); toggleMobileMenu()" class="block py-2 bg-black text-white mt-4">WhatsApp</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ESPAÇADOR DO HEADER -->
+    <div class="h-24"></div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main id="app-content" class="flex-grow">
+
+        <!-- ========================================== -->
+        <!-- PÁGINA: HOME -->
+        <!-- ========================================== -->
+        <section id="home" class="page-section active">
+            <!-- Hero Section -->
+            <div class="hero-bg text-white py-32 lg:py-40 relative overflow-hidden">
+                <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+                    <div class="space-y-8 animate-fade-in-up">
+                        <span class="inline-block py-1 px-3 border border-gray-500 text-gray-300 text-[10px] uppercase tracking-[0.3em]">
+                            Atuação Nacional
+                        </span>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight font-heading">
+                            NÃO DEIXE <span class="font-bold text-white border-b-2 border-white/30 pb-2">DINHEIRO NA MESA</span> NA HORA DA LIQUIDAÇÃO.
+                        </h1>
+                        <p class="text-lg text-gray-400 font-light leading-relaxed max-w-lg border-l border-gray-700 pl-6">
+                            A união da expertise jurídica com a exatidão matemática. Assistência técnica especializada em Cálculos Trabalhistas para Advogados e Empresas.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-5 pt-6">
+                            <a href="https://wa.me/5511999015603" target="_blank" class="px-8 py-4 bg-white text-black font-semibold uppercase tracking-widest text-xs hover:bg-gray-200 transition flex items-center justify-center gap-3">
+                                <i class="fab fa-whatsapp text-lg"></i> Falar com Bruno
+                            </a>
+                            <a href="#" onclick="navigateTo('contato')" class="px-8 py-4 bg-transparent border border-white/30 text-white font-semibold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition flex items-center justify-center">
+                                Solicitar Orçamento
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Imagem Ilustrativa Minimalista -->
+                    <div class="hidden md:flex justify-end relative">
+                         <div class="relative max-w-sm w-full h-[500px] border border-white p-4">
+                             <div class="absolute inset-0 bg-black w-full h-full transform translate-x-4 translate-y-4 -z-10"></div>
+                             <img src="./brunoheadhome.jpg" alt="Cálculos Judiciais" class="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition duration-1000">
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção: O Problema -->
+            <div class="py-24 bg-white">
+                <div class="container mx-auto px-6 max-w-6xl">
+                    <div class="text-center mb-20">
+                        <h2 class="text-3xl md:text-4xl font-light text-black mb-6 font-heading">O Maior Risco de um Processo Não é a Sentença, <br><span class="font-bold border-b border-black pb-1">é a Conta Errada.</span></h2>
+                        <p class="text-lg text-gray-500 font-light max-w-3xl mx-auto">Milhares de reais são perdidos diariamente por erros na fase de liquidação ou falta de impugnação técnica. Você já passou por isso?</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-0 divide-y md:divide-y-0 md:divide-x divide-gray-200 border-t border-b border-gray-200">
+                        <div class="p-10 hover:bg-gray-50 transition duration-500">
+                            <h3 class="font-bold text-sm uppercase tracking-widest mb-4 flex items-center gap-3 text-black"><i class="fas fa-times text-gray-400"></i> Inflação</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">Valores calculados pela parte contrária que distorcem a realidade da condenação, gerando prejuízo imediato.</p>
+                        </div>
+                        <div class="p-10 hover:bg-gray-50 transition duration-500">
+                            <h3 class="font-bold text-sm uppercase tracking-widest mb-4 flex items-center gap-3 text-black"><i class="fas fa-clock text-gray-400"></i> Prazos</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">A falta de tempo para analisar planilhas complexas resulta em preclusão e aceitação de cálculos errados.</p>
+                        </div>
+                        <div class="p-10 hover:bg-gray-50 transition duration-500">
+                            <h3 class="font-bold text-sm uppercase tracking-widest mb-4 flex items-center gap-3 text-black"><i class="fas fa-calculator text-gray-400"></i> Técnica</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">Traduzir a sentença jurídica para os números exatos no PJe-Calc exige conhecimento específico.</p>
+                        </div>
+                        <div class="p-10 hover:bg-gray-50 transition duration-500">
+                            <h3 class="font-bold text-sm uppercase tracking-widest mb-4 flex items-center gap-3 text-black"><i class="fas fa-balance-scale text-gray-400"></i> Insegurança</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">Quesitos mal formulados na perícia podem destruir uma tese de defesa sólida.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção: A Solução -->
+            <div class="py-24 bg-brand-black text-white">
+                <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-light mb-8 font-heading">Transforme Riscos em <span class="font-bold text-white">Segurança Jurídica.</span></h2>
+                        <p class="text-gray-400 text-lg mb-10 font-light border-l border-white/20 pl-6">Como advogado especialista em cálculos, eu não apenas "faço a conta". Eu interpreto a jurisprudência para garantir o melhor cenário financeiro para o seu cliente.</p>
+                        <ul class="space-y-6">
+                            <li class="flex items-start gap-4 group">
+                                <div class="w-2 h-2 mt-2 bg-white rounded-full group-hover:scale-150 transition"></div>
+                                <div>
+                                    <strong class="block text-white uppercase tracking-wider text-sm mb-1">Visão Estratégica</strong>
+                                    <span class="text-gray-500 text-sm">Análise processual completa antes de calcular.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 group">
+                                <div class="w-2 h-2 mt-2 bg-white rounded-full group-hover:scale-150 transition"></div>
+                                <div>
+                                    <strong class="block text-white uppercase tracking-wider text-sm mb-1">Agilidade Absoluta</strong>
+                                    <span class="text-gray-500 text-sm">Prazos cumpridos rigorosamente para não travar o processo.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 group">
+                                <div class="w-2 h-2 mt-2 bg-white rounded-full group-hover:scale-150 transition"></div>
+                                <div>
+                                    <strong class="block text-white uppercase tracking-wider text-sm mb-1">Argumentação Técnica</strong>
+                                    <span class="text-gray-500 text-sm">Fundamentação jurídica robusta em todas as impugnações.</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="mt-12">
+                            <a href="#" onclick="navigateTo('servicos')" class="text-white text-xs uppercase tracking-widest border-b border-white/50 pb-1 hover:border-white transition">
+                                Ver todos os serviços
+                            </a>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-px bg-gray-800 border border-gray-800">
+                        <div class="bg-brand-black p-10 text-center hover:bg-gray-900 transition">
+                            <i class="fas fa-gavel text-2xl text-white mb-4 opacity-50"></i>
+                            <h4 class="font-bold text-2xl mb-1">+5 Anos</h4>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500">De Experiência</p>
+                        </div>
+                        <div class="bg-brand-black p-10 text-center hover:bg-gray-900 transition">
+                            <i class="fas fa-globe text-2xl text-white mb-4 opacity-50"></i>
+                            <h4 class="font-bold text-2xl mb-1">Nacional</h4>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500">Atuação Digital</p>
+                        </div>
+                        <div class="bg-brand-black p-10 text-center col-span-2 hover:bg-gray-900 transition">
+                            <i class="fas fa-laptop-code text-2xl text-white mb-4 opacity-50"></i>
+                            <h4 class="font-bold text-2xl mb-1">PJe-Calc</h4>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500">Especialista no Sistema Oficial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="py-20 bg-brand-silver text-center">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-2xl font-light text-black mb-8 font-heading">Precisa de um cálculo urgente ou análise de viabilidade?</h2>
+                    <a href="https://wa.me/5511999015603" target="_blank" class="inline-flex items-center gap-3 px-10 py-4 bg-black text-white text-xs uppercase tracking-widest font-bold hover:bg-gray-800 transition shadow-xl">
+                        <i class="fab fa-whatsapp text-lg"></i> Chame no WhatsApp +55 11 99901-5603
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PÁGINA: SOBRE -->
+        <!-- ========================================== -->
+        <section id="sobre" class="page-section">
+            <div class="container mx-auto px-6 py-24">
+                <div class="max-w-5xl mx-auto">
+                    <!-- Intro -->
+                    <div class="flex flex-col md:flex-row gap-16 items-start mb-20">
+                        <div class="w-full md:w-5/12">
+                            <!-- Placeholder de Imagem do Advogado - Estilo Preto e Branco -->
+                            <div class="aspect-[3/4] bg-gray-200 relative">
+                                <div class="absolute inset-0 border border-black transform translate-x-3 translate-y-3 z-0"></div>
+                                <img src="./brunoheadbio.jpeg" alt="Bruno Alves Guimarães" class="object-cover w-full h-full grayscale z-10 relative">
+                            </div>
+                        </div>
+                        <div class="w-full md:w-7/12 pt-8">
+                            <span class="text-gray-400 font-bold tracking-[0.3em] text-[10px] uppercase mb-4 block">O Especialista</span>
+                            <h1 class="text-4xl font-light text-black mb-8 font-heading leading-tight">Mais que um Calculista: <br>Um Advogado com <span class="font-bold border-b border-black">Visão Exata.</span></h1>
+                            <p class="text-gray-600 mb-6 leading-relaxed font-light">
+                                Olá, sou <strong>Bruno Alves Guimarães</strong>. Minha trajetória profissional é marcada pela intersecção entre o Direito e a Matemática Financeira. Percebi, na prática forense, que excelentes advogados perdiam grandes causas na fase de execução por falta de domínio sobre os números.
+                            </p>
+                            <p class="text-gray-600 mb-8 leading-relaxed font-light">
+                                Decidi preencher essa lacuna. Hoje, atuo como parceiro estratégico de escritórios de advocacia e departamentos jurídicos, garantindo que o direito ganho na sentença se converta no valor justo na conta bancária.
+                            </p>
+                            <a href="https://wa.me/5511999015603" target="_blank" class="text-black text-xs uppercase tracking-widest font-bold border-b-2 border-black pb-1 hover:text-gray-600 hover:border-gray-600 transition">Converse com Bruno no WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <!-- Diferenciais -->
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <div class="bg-white p-8 border border-gray-100 hover:border-black transition duration-500 group">
+                            <h3 class="text-lg font-bold text-black mb-4 uppercase tracking-wider group-hover:translate-x-1 transition-transform">O Olhar do Advogado</h3>
+                            <p class="text-gray-500 text-sm font-light leading-relaxed">Diferente de contadores generalistas, eu entendo a tese jurídica por trás do número. Sei identificar quando um reflexo de hora extra foi mal interpretado ou quando um índice de correção monetária pode ser discutido nos tribunais superiores.</p>
+                        </div>
+                        <div class="bg-white p-8 border border-gray-100 hover:border-black transition duration-500 group">
+                            <h3 class="text-lg font-bold text-black mb-4 uppercase tracking-wider group-hover:translate-x-1 transition-transform">Fundador da AG Cálculos</h3>
+                            <p class="text-gray-500 text-sm font-light leading-relaxed">Com atuação focada em Direito do Trabalho e Processo do Trabalho, desenvolvi uma metodologia própria de análise de passivos e créditos na AG Cálculos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PÁGINA: SERVIÇOS -->
+        <!-- ========================================== -->
+        <section id="servicos" class="page-section">
+            <div class="bg-black text-white py-24">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl font-light mb-6 font-heading">Soluções Completas em Cálculos Judiciais</h1>
+                    <p class="text-gray-500 font-light max-w-2xl mx-auto">Do cálculo inicial à liquidação complexa. Entregamos precisão técnica para fortalecer sua tese jurídica.</p>
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 py-20 bg-white">
+                <div class="grid md:grid-cols-3 gap-8 -mt-32 relative z-10">
+                    
+                    <!-- Serviço 1 -->
+                    <div class="bg-white p-10 shadow-2xl shadow-gray-200 border-t-2 border-black">
+                        <div class="text-4xl text-black mb-6">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-black mb-4 font-heading">Cálculo para Petição Inicial</h3>
+                        <p class="text-gray-500 mb-8 text-sm font-light leading-relaxed">A Reforma Trabalhista exige pedidos líquidos. Não corra o risco de sucumbência ou inépcia da inicial. Entregamos planilha detalhada fundamentada na legislação.</p>
+                        <div class="bg-brand-silver p-4 text-[10px] uppercase tracking-widest text-gray-600 mb-8">
+                            <strong>Para:</strong> Advogados de Reclamantes
+                        </div>
+                        <a href="https://wa.me/5511999015603?text=Olá,%20preciso%20de%20um%20cálculo%20inicial" target="_blank" class="block w-full text-center py-4 border border-black text-black text-xs uppercase tracking-widest hover:bg-black hover:text-white transition">Solicitar Inicial</a>
+                    </div>
+
+                    <!-- Serviço 2 -->
+                    <div class="bg-black p-10 shadow-2xl text-white transform md:-translate-y-6">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-4xl text-white">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <span class="text-[10px] uppercase tracking-widest border border-white/30 px-2 py-1">Mais Procurado</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4 font-heading">Liquidação de Sentença</h3>
+                        <p class="text-gray-400 mb-8 text-sm font-light leading-relaxed">O momento da verdade. Transformamos o comando judicial em valores exatos, observando verbas, reflexos, juros e correção (IPCA-E, TR, SELIC) via PJe-Calc.</p>
+                        <div class="bg-white/10 p-4 text-[10px] uppercase tracking-widest text-gray-300 mb-8">
+                            <strong>Diferencial:</strong> Sistema Oficial
+                        </div>
+                        <a href="https://wa.me/5511999015603?text=Olá,%20preciso%20de%20uma%20liquidação%20de%20sentença" target="_blank" class="block w-full text-center py-4 bg-white text-black text-xs uppercase tracking-widest hover:bg-gray-200 transition font-bold">Orçar Liquidação</a>
+                    </div>
+
+                    <!-- Serviço 3 -->
+                    <div class="bg-white p-10 shadow-2xl shadow-gray-200 border-t-2 border-gray-400">
+                        <div class="text-4xl text-gray-400 mb-6">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-black mb-4 font-heading">Impugnação e Pareceres</h3>
+                        <p class="text-gray-500 mb-8 text-sm font-light leading-relaxed">A parte contrária apresentou um valor absurdo? Elaboramos a impugnação técnica ponto a ponto, demonstrando excessos. Essencial para redução de passivo.</p>
+                        <div class="bg-brand-silver p-4 text-[10px] uppercase tracking-widest text-gray-600 mb-8">
+                            <strong>Impacto:</strong> Economia Real
+                        </div>
+                        <a href="https://wa.me/5511999015603?text=Olá,%20preciso%20impugnar%20um%20cálculo" target="_blank" class="block w-full text-center py-4 border border-gray-400 text-gray-600 text-xs uppercase tracking-widest hover:bg-gray-400 hover:text-white transition">Analisar Laudo</a>
+                    </div>
+
+                </div>
+
+                <!-- Lista de Outros Serviços -->
+                <div class="mt-24 max-w-4xl mx-auto">
+                    <h3 class="text-lg font-bold text-black mb-8 pb-4 border-b border-gray-200 uppercase tracking-widest text-center">Outros Serviços Especializados</h3>
+                    <div class="grid sm:grid-cols-2 gap-px bg-gray-200 border border-gray-200">
+                        <div class="bg-white p-6 flex items-center gap-4 hover:bg-gray-50 transition">
+                            <i class="fas fa-check text-black text-xs"></i> <span class="text-gray-600 text-sm uppercase tracking-wide">Assistência Técnica em Perícias</span>
+                        </div>
+                        <div class="bg-white p-6 flex items-center gap-4 hover:bg-gray-50 transition">
+                            <i class="fas fa-check text-black text-xs"></i> <span class="text-gray-600 text-sm uppercase tracking-wide">Atualização Monetária de Débitos</span>
+                        </div>
+                        <div class="bg-white p-6 flex items-center gap-4 hover:bg-gray-50 transition">
+                            <i class="fas fa-check text-black text-xs"></i> <span class="text-gray-600 text-sm uppercase tracking-wide">Cálculo para Acordos Trabalhistas</span>
+                        </div>
+                        <div class="bg-white p-6 flex items-center gap-4 hover:bg-gray-50 transition">
+                            <i class="fas fa-check text-black text-xs"></i> <span class="text-gray-600 text-sm uppercase tracking-wide">Apuração de Horas Extras e Reflexos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PÁGINA: EXPERIÊNCIA (TIMELINE) -->
+        <!-- ========================================== -->
+        <section id="experiencia" class="page-section">
+            <div class="container mx-auto px-6 py-24 max-w-4xl">
+                <div class="text-center mb-16">
+                    <h1 class="text-3xl font-light text-black font-heading">Trajetória e Formação</h1>
+                    <p class="text-gray-400 mt-4 text-sm tracking-widest uppercase">A prática constante molda a excelência.</p>
+                </div>
+
+                <div class="relative border-l border-black ml-6 space-y-16 py-4">
+                    
+                    <!-- Item 1 -->
+                    <div class="relative pl-12">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-black rounded-full"></div>
+                        <h3 class="text-xl font-bold text-black font-heading">Atuação Prática Especializada</h3>
+                        <span class="inline-block mt-2 mb-3 text-[10px] font-bold text-white bg-black px-2 py-0.5 uppercase tracking-wider">Atual</span>
+                        <p class="text-gray-500 font-light leading-relaxed">Milhares de horas em análise de processos e execuções, atuando como assistente técnico para grandes bancas jurídicas e empresas.</p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative pl-12">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-gray-400 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-black font-heading">Fundação da AG Cálculos</h3>
+                        <span class="block mt-1 mb-3 text-[10px] text-gray-400 uppercase tracking-wider">2020</span>
+                        <p class="text-gray-500 font-light leading-relaxed">Consolidação da consultoria especializada em cálculos trabalhistas, focando na união de tecnologia (PJe-Calc) e inteligência jurídica.</p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="relative pl-12">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-gray-400 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-black font-heading">Especializações e Extensão</h3>
+                        <p class="mt-4 text-gray-500 font-light leading-relaxed">Cursos avançados em Cálculos Trabalhistas, PJe-Calc Cidadão e Excel para Juristas. Pós-graduação em Direito e Processo do Trabalho.</p>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="relative pl-12">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-gray-400 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-black font-heading">Formação Acadêmica</h3>
+                        <p class="mt-4 text-gray-500 font-light leading-relaxed">Bacharel em Direito. Sólida base jurídica para interpretação de sentenças e acórdãos.</p>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center">
+                    <a href="#" onclick="navigateTo('contato')" class="px-10 py-4 bg-gray-100 text-black border border-gray-300 rounded-none text-xs uppercase tracking-widest hover:bg-black hover:text-white hover:border-black transition">
+                        Solicitar CV ou Parceria
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PÁGINA: BLOG -->
+        <!-- ========================================== -->
+        <section id="blog" class="page-section">
+            <div class="bg-gray-50 py-24">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h1 class="text-3xl font-light text-black font-heading">Blog & Artigos Técnicos</h1>
+                        <p class="text-gray-500 max-w-2xl mx-auto mt-4 font-light">Conteúdo educativo para advogados evitarem erros na execução.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Post 1 -->
+                        <div class="bg-white group cursor-pointer hover:shadow-xl transition duration-500 border border-gray-100">
+                            <div class="p-8">
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Dicas Práticas</span>
+                                <h3 class="font-heading font-bold text-lg mt-4 mb-4 text-black group-hover:text-gray-600 transition">7 Erros em Cálculos Trabalhistas que Advogados Cometem</h3>
+                                <p class="text-gray-500 text-sm font-light mb-6 leading-relaxed">A falta de observação da prescrição quinquenal ou a aplicação errada de juros pode ser fatal. Descubra os erros mais comuns.</p>
+                                <a href="https://wa.me/5511999015603?text=Li%20o%20post%20sobre%20Erros%20e%20quero%20revisar%20meus%20processos" class="text-black text-xs font-bold uppercase tracking-wider border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500">Ler mais</a>
+                            </div>
+                        </div>
+
+                        <!-- Post 2 -->
+                        <div class="bg-white group cursor-pointer hover:shadow-xl transition duration-500 border border-gray-100">
+                            <div class="p-8">
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Estratégia</span>
+                                <h3 class="font-heading font-bold text-lg mt-4 mb-4 text-black group-hover:text-gray-600 transition">Como a Impugnação Técnica Salva o Passivo</h3>
+                                <p class="text-gray-500 text-sm font-light mb-6 leading-relaxed">Aceitar a conta do reclamante sem conferência é prejuízo certo. Veja como a impugnação técnica reduz condenações.</p>
+                                <a href="https://wa.me/5511999015603" class="text-black text-xs font-bold uppercase tracking-wider border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500">Ler mais</a>
+                            </div>
+                        </div>
+
+                        <!-- Post 3 -->
+                        <div class="bg-white group cursor-pointer hover:shadow-xl transition duration-500 border border-gray-100">
+                            <div class="p-8">
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Atualização</span>
+                                <h3 class="font-heading font-bold text-lg mt-4 mb-4 text-black group-hover:text-gray-600 transition">IPCA-E, TR ou SELIC em 2026?</h3>
+                                <p class="text-gray-500 text-sm font-light mb-6 leading-relaxed">As decisões do STF mudaram tudo. Entenda qual índice aplicar em cada fase do processo e não perca dinheiro na correção.</p>
+                                <a href="https://wa.me/5511999015603" class="text-black text-xs font-bold uppercase tracking-wider border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500">Ler mais</a>
+                            </div>
+                        </div>
+                         
+                         <!-- Post 4 -->
+                        <div class="bg-white group cursor-pointer hover:shadow-xl transition duration-500 border border-gray-100">
+                            <div class="p-8">
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Ferramentas</span>
+                                <h3 class="font-heading font-bold text-lg mt-4 mb-4 text-black group-hover:text-gray-600 transition">PJe-Calc: Por que usar o sistema oficial?</h3>
+                                <p class="text-gray-500 text-sm font-light mb-6 leading-relaxed">Planilhas de Excel caseiras não são mais aceitas com facilidade. Saiba por que o PJe-Calc traz mais segurança.</p>
+                                <a href="https://wa.me/5511999015603" class="text-black text-xs font-bold uppercase tracking-wider border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500">Ler mais</a>
+                            </div>
+                        </div>
+
+                        <!-- Post 5 -->
+                        <div class="bg-white group cursor-pointer hover:shadow-xl transition duration-500 border border-gray-100">
+                            <div class="p-8">
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Perícia</span>
+                                <h3 class="font-heading font-bold text-lg mt-4 mb-4 text-black group-hover:text-gray-600 transition">A importância do Assistente Técnico</h3>
+                                <p class="text-gray-500 text-sm font-light mb-6 leading-relaxed">O perito do juízo pode errar. Ter um assistente técnico formulando quesitos garante que a verdade seja traduzida em números.</p>
+                                <a href="https://wa.me/5511999015603" class="text-black text-xs font-bold uppercase tracking-wider border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500">Ler mais</a>
+                            </div>
+                        </div>
+
+                        <!-- Post 6 -->
+                        <div class="bg-white group cursor-pointer hover:shadow-xl transition duration-500 border border-gray-100">
+                            <div class="p-8">
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Processual</span>
+                                <h3 class="font-heading font-bold text-lg mt-4 mb-4 text-black group-hover:text-gray-600 transition">Liquidação por Artigos ou por Cálculos?</h3>
+                                <p class="text-gray-500 text-sm font-light mb-6 leading-relaxed">Entenda as diferenças processuais e quando cada modalidade é aplicada na Justiça do Trabalho.</p>
+                                <a href="https://wa.me/5511999015603" class="text-black text-xs font-bold uppercase tracking-wider border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500">Ler mais</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PÁGINA: CONTATO -->
+        <!-- ========================================== -->
+        <section id="contato" class="page-section">
+            <div class="container mx-auto px-6 py-24">
+                <div class="max-w-5xl mx-auto bg-white border border-gray-200 shadow-2xl flex flex-col md:flex-row">
+                    
+                    <!-- Coluna Esquerda (Info) -->
+                    <div class="bg-black text-white p-12 md:w-2/5 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gray-800 rounded-full blur-3xl opacity-20 transform translate-x-10 -translate-y-10"></div>
+                        <div class="relative z-10">
+                            <h2 class="text-3xl font-light mb-8 font-heading">Vamos resolver seu cálculo hoje?</h2>
+                            <p class="text-gray-400 mb-12 font-light">Atendimento ágil para todo o Brasil. Não deixe o prazo passar.</p>
+                            
+                            <div class="space-y-8">
+                                <div class="flex items-center gap-6">
+                                    <div class="text-2xl text-white opacity-80">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-1">WhatsApp</span>
+                                        <a href="https://wa.me/5511999015603" class="text-lg hover:text-gray-300 font-light">+55 11 99901-5603</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-6">
+                                    <div class="text-2xl text-white opacity-80">
+                                        <i class="far fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-1">E-mail</span>
+                                        <a href="mailto:contato@agcalculos.com.br" class="text-lg hover:text-gray-300 font-light">contato@agcalculos.com.br</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-6">
+                                    <div class="text-2xl text-white opacity-80">
+                                        <i class="fab fa-instagram"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-1">Instagram</span>
+                                        <a href="https://instagram.com/agcalculos" class="text-lg hover:text-gray-300 font-light">@agcalculos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-16 relative z-10 border-t border-gray-800 pt-6">
+                            <p class="text-xs text-gray-500 uppercase tracking-wider">Segunda a Sexta, das 09h às 18h.</p>
+                        </div>
+                    </div>
+
+                    <!-- Coluna Direita (Form) -->
+                    <div class="p-12 md:w-3/5 bg-white">
+                        <form onsubmit="event.preventDefault(); window.open('https://wa.me/5511999015603?text=Olá, vim pelo site e gostaria de um orçamento.', '_blank');">
+                            <h3 class="text-2xl font-light text-black mb-8 font-heading">Solicitar Orçamento</h3>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-xs uppercase tracking-widest font-bold text-gray-500 mb-2">Seu Nome</label>
+                                    <input type="text" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-black focus:bg-white outline-none transition" placeholder="Ex: Dr. João Silva">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs uppercase tracking-widest font-bold text-gray-500 mb-2">Você é:</label>
+                                    <select class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-black focus:bg-white outline-none transition appearance-none">
+                                        <option>Advogado(a)</option>
+                                        <option>Empresa</option>
+                                        <option>Pessoa Física</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs uppercase tracking-widest font-bold text-gray-500 mb-2">Serviço de Interesse</label>
+                                    <select class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-black focus:bg-white outline-none transition appearance-none">
+                                        <option>Cálculo Inicial</option>
+                                        <option>Liquidação de Sentença</option>
+                                        <option>Impugnação de Laudo</option>
+                                        <option>Outros</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs uppercase tracking-widest font-bold text-gray-500 mb-2">Mensagem (Opcional)</label>
+                                    <textarea rows="3" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 focus:border-black focus:bg-white outline-none transition" placeholder="Breve resumo do caso..."></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-4 bg-black text-white text-xs uppercase tracking-widest font-bold hover:bg-gray-800 transition shadow-lg mt-4">
+                                    Enviar Solicitação
+                                </button>
+                                <p class="text-[10px] text-center text-gray-400 mt-4 uppercase tracking-wider"><i class="fas fa-lock"></i> Seus dados estão seguros.</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PÁGINA: DEPOIMENTOS -->
+        <!-- ========================================== -->
+        <section id="depoimentos" class="page-section">
+             <div class="container mx-auto px-6 py-24 bg-brand-silver">
+                <div class="text-center mb-20">
+                    <h2 class="text-3xl font-light text-black font-heading">O que dizem sobre a AG Cálculos</h2>
+                    <p class="text-gray-500 mt-4 font-light">A confiança de advogados e empresas é o nosso maior patrimônio.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Depoimento 1 -->
+                    <div class="bg-white p-10 shadow-lg border border-white hover:border-black transition duration-500">
+                        <div class="text-black text-6xl opacity-10 font-serif leading-none h-8 mb-4">“</div>
+                        <p class="text-gray-600 mb-8 font-light italic text-sm leading-relaxed">O Bruno salvou nosso prazo. A impugnação que ele elaborou reduziu a execução em 40%. Trabalho impecável e fundamentação jurídica de alto nível.</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold tracking-widest">CM</div>
+                            <div>
+                                <strong class="block text-black text-xs uppercase tracking-widest">Dr. Carlos M.</strong>
+                                <span class="text-[10px] text-gray-400 uppercase tracking-wider">Advogado Trabalhista</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depoimento 2 -->
+                    <div class="bg-white p-10 shadow-lg border border-white hover:border-black transition duration-500">
+                        <div class="text-black text-6xl opacity-10 font-serif leading-none h-8 mb-4">“</div>
+                        <p class="text-gray-600 mb-8 font-light italic text-sm leading-relaxed">Precisão e rapidez. Finalmente encontrei um parceiro que entende a linguagem jurídica na hora de fazer as contas. O PJe-Calc veio perfeito.</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold tracking-widest">FS</div>
+                            <div>
+                                <strong class="block text-black text-xs uppercase tracking-widest">Dra. Fernanda S.</strong>
+                                <span class="text-[10px] text-gray-400 uppercase tracking-wider">Sócia de Escritório</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depoimento 3 -->
+                    <div class="bg-white p-10 shadow-lg border border-white hover:border-black transition duration-500">
+                        <div class="text-black text-6xl opacity-10 font-serif leading-none h-8 mb-4">“</div>
+                        <p class="text-gray-600 mb-8 font-light italic text-sm leading-relaxed">O cálculo inicial veio fundamentado e facilitou muito minha audiência de conciliação. A segurança técnica faz toda a diferença.</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold tracking-widest">RL</div>
+                            <div>
+                                <strong class="block text-black text-xs uppercase tracking-widest">Ricardo L.</strong>
+                                <span class="text-[10px] text-gray-400 uppercase tracking-wider">Advogado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-16">
+                     <a href="https://wa.me/5511999015603" target="_blank" class="text-black text-xs uppercase tracking-widest font-bold border-b border-black pb-1 hover:text-gray-600 hover:border-gray-600 transition">Junte-se aos parceiros que têm segurança na execução</a>
+                </div>
+             </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-gray-400 py-16 border-t border-gray-900">
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-1">
+                <h4 class="text-white text-lg font-heading uppercase tracking-widest mb-6">Bruno Alves</h4>
+                <p class="text-xs text-gray-500 mb-6 leading-relaxed">Especialista em Cálculos Trabalhistas e Judiciais. Transformando sentenças em valores justos.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 border border-gray-800 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition rounded-full"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 border border-gray-800 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition rounded-full"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Menu</h4>
+                <ul class="space-y-3 text-xs font-light">
+                    <li><a href="#" onclick="navigateTo('home')" class="hover:text-white transition">Home</a></li>
+                    <li><a href="#" onclick="navigateTo('servicos')" class="hover:text-white transition">Serviços</a></li>
+                    <li><a href="#" onclick="navigateTo('blog')" class="hover:text-white transition">Blog Jurídico</a></li>
+                    <li><a href="#" onclick="navigateTo('contato')" class="hover:text-white transition">Contato</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Áreas</h4>
+                <ul class="space-y-3 text-xs font-light">
+                    <li><a href="#" onclick="navigateTo('servicos')" class="hover:text-white transition">Cálculo Inicial</a></li>
+                    <li><a href="#" onclick="navigateTo('servicos')" class="hover:text-white transition">Liquidação de Sentença</a></li>
+                    <li><a href="#" onclick="navigateTo('servicos')" class="hover:text-white transition">Impugnação de Laudo</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Contato</h4>
+                <ul class="space-y-4 text-xs font-light">
+                    <li class="flex items-center gap-3"><i class="fab fa-whatsapp text-white"></i> +55 11 99901-5603</li>
+                    <li class="flex items-center gap-3"><i class="far fa-envelope text-white"></i> contato@agcalculos.com.br</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-white"></i> Atuação Nacional (Digital)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-16 pt-8 border-t border-gray-900 text-center text-[10px] uppercase tracking-widest text-gray-600 flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2025 Bruno Alves Guimarães. Todos os direitos reservados.</p>
+            <p>Política de Privacidade | Alta Performance Jurídica</p>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://api.whatsapp.com/send/?phone=5511999015603&text=Olá!+Estou+vindo+do+site+e+gostaria+de+saber+mais+sobre+seus+serviços!&type=phone_number&app_absent=0" class="fixed bottom-8 right-8 z-50 bg-whatsapp text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition duration-300 whatsapp-float border-2 border-white" aria-label="Chamar no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JAVASCRIPT SIMPLES PARA SPA (SINGLE PAGE APPLICATION) -->
+    <script>
+        // Função de Roteamento Simples
+        function navigateTo(sectionId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            const target = document.getElementById(sectionId);
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Menu Mobile Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if(hash && document.getElementById(hash)) {
+                navigateTo(hash);
+            }
+        });
+    </script>
+</body>
+</html>
